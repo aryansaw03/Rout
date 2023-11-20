@@ -1,17 +1,8 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Stack } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
-
-import Colors from "../../constants/Colors";
+import { Stack } from "expo-router";
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme();
-
 	return (
-		<Stack
-			screenOptions={{
-				headerTintColor: Colors[colorScheme ?? "light"].tint,
-			}}>
+		<Stack>
 			<Stack.Screen
 				name="sign-in"
 				options={{

@@ -1,8 +1,6 @@
-import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import {
-	ColorSchemeName,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
@@ -15,16 +13,14 @@ import {
 	useColorScheme,
 } from "react-native";
 import { auth } from "../../FirebaseConfig";
-import Colors from "../../constants/Colors";
+import getThemeColors from "../../constants/Colors";
 
 const SignIn = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const colorScheme = useColorScheme();
-	const styles = styleCreator(colorScheme);
-	const router = useRouter();
+	const styles = styleGenerator();
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -86,8 +82,9 @@ const SignIn = () => {
 	);
 };
 
-const styleCreator = (colorScheme: ColorSchemeName) =>
-	StyleSheet.create({
+const styleGenerator = () => {
+	const colors = getThemeColors(useColorScheme());
+	return StyleSheet.create({
 		container: {
 			flex: 1,
 		},
@@ -101,7 +98,7 @@ const styleCreator = (colorScheme: ColorSchemeName) =>
 			borderRadius: 20,
 			padding: 20,
 			marginVertical: 10,
-			backgroundColor: Colors[colorScheme ?? "light"].tint,
+			backgroundColor: colors.background,
 		},
 		button: {
 			width: 300,
@@ -120,5 +117,6 @@ const styleCreator = (colorScheme: ColorSchemeName) =>
 			color: "white",
 		},
 	});
+};
 
 export default SignIn;

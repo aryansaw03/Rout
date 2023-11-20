@@ -1,13 +1,11 @@
-import { View, Text, ActivityIndicator, useColorScheme } from "react-native";
-import Colors from "../constants/Colors";
+import { ActivityIndicator, View } from "react-native";
 
 const Loading = () => {
-	const colorScheme = useColorScheme();
 	return (
 		<View
 			style={{
 				flex: 1,
-				backgroundColor: Colors[colorScheme ?? "light"].background,
+				backgroundColor: 'black',
 				alignItems: "center",
 				justifyContent: "center",
 			}}>

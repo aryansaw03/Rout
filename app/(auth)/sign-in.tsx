@@ -15,7 +15,6 @@ import {
 	useColorScheme,
 } from "react-native";
 import { auth } from "../../FirebaseConfig";
-import Colors from "../../constants/Colors";
 
 const SignIn = () => {
 	const [email, setEmail] = useState("");
@@ -90,7 +89,7 @@ const styleCreator = (colorScheme: ColorSchemeName) =>
 			borderRadius: 20,
 			padding: 20,
 			marginVertical: 10,
-			backgroundColor: Colors[colorScheme ?? "light"].tint,
+			backgroundColor: "black",
 		},
 		button: {
 			width: 300,
