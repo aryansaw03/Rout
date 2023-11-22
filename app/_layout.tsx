@@ -18,8 +18,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-		'JosefinSans': require("../assets/fonts/JosefinSans-VariableFont_wght.ttf"),
-		'JosefinSans-Italics': require("../assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf"),
+		"JosefinSans-Regular": require("../assets/fonts/JosefinSans-Regular.ttf"),
+		"JosefinSans-Light": require("../assets/fonts/JosefinSans-Light.ttf"),
+		"JosefinSans-Medium": require("../assets/fonts/JosefinSans-Medium.ttf"),
+		"JosefinSans-Bold": require("../assets/fonts/JosefinSans-Bold.ttf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

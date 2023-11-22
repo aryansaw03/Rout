@@ -2,111 +2,126 @@ import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import {
-	ColorSchemeName,
+	ImageBackground,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
-	Pressable,
-	StyleSheet,
 	Text,
-	TextInput,
+	TouchableOpacity,
 	TouchableWithoutFeedback,
 	View,
 	useColorScheme,
 } from "react-native";
 import { auth } from "../../FirebaseConfig";
+import AuthTextInput from "../../components/AuthTextInput";
+import getThemeColors from "../../constants/Colors";
 
 const SignIn = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const colorScheme = useColorScheme();
-	const styles = styleCreator(colorScheme);
+	const colors = getThemeColors(useColorScheme());
 	const router = useRouter();
 	return (
-		<KeyboardAvoidingView
-			behavior={Platform.OS === "ios" ? "height" : "height"}
-			style={styles.container}>
-			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				<View style={styles.innerContainer}>
-					{error && <Text style={{ color: "red" }}>{error}</Text>}
-					<TextInput
-						style={styles.input}
-						placeholder="Email"
-						placeholderTextColor="grey"
-						value={email}
-						onChangeText={setEmail}
-						keyboardType="email-address"
-						textContentType="emailAddress"
-					/>
-					<TextInput
-						style={styles.input}
-						placeholder="Password"
-						placeholderTextColor="grey"
-						value={password}
-						onChangeText={setPassword}
-						secureTextEntry={true}
-						textContentType="password"
-					/>
-					<Pressable
-						style={styles.button}
-						onPress={() => {
-							signInWithEmailAndPassword(auth, email, password)
-								.then((userCredential) => {
-									console.log("logged in");
-								})
-								.catch((error) => {
-									setError(error.code);
-								});
-						}}>
-						<Text style={styles.buttonText}>Sign In</Text>
-					</Pressable>
-					<Pressable
-						style={[styles.button, { backgroundColor: "grey" }]}
-						onPress={() => {
-							router.push("/(auth)/register");
-						}}>
-						<Text style={styles.buttonText}>Register</Text>
-					</Pressable>
-				</View>
-			</TouchableWithoutFeedback>
-		</KeyboardAvoidingView>
+		<ImageBackground
+			className="w-full h-full"
+			style={{ backgroundColor: colors.background }}
+			resizeMode="cover"
+			source={require("../../assets/images/auth-background.png")}>
+			<KeyboardAvoidingView
+				className="w-full h-full"
+				behavior={Platform.OS === "ios" ? "padding" : "height"}>
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<View className="flex-1 items-center">
+						<View className="pt-40 h-72 justify-end">
+							<Text
+								className="text-5xl"
+								style={{
+									color: colors.secondaryText,
+									fontFamily: "JosefinSans-Light",
+								}}>
+								Hello,
+							</Text>
+							<Text
+								className="text-2xl mt-10"
+								style={{
+									color: colors.secondaryText,
+									fontFamily: "JosefinSans-Bold",
+								}}>
+								Sign into your Account
+							</Text>
+						</View>
+						<View className="flex-1 max-h-96 w-9/12 items-center justify-end">
+							{error && (
+								<Text style={{ color: "red" }}>{error}</Text>
+							)}
+							<AuthTextInput
+								placeholder="Email"
+								value={email}
+								setValue={setEmail}
+								keyboardType="email-address"
+								textContentType="emailAddress"
+							/>
+							<AuthTextInput
+								placeholder="Password"
+								value={password}
+								setValue={setPassword}
+								textContentType="password"
+								secureTextEntry={true}
+							/>
+							<TouchableOpacity
+								className="rounded-2xl w-48 h-12 items-center justify-center mt-4"
+								style={{ backgroundColor: colors.primary }}
+								onPress={() => {
+									signInWithEmailAndPassword(
+										auth,
+										email,
+										password
+									)
+										.then((userCredential) => {
+											console.log("logged in");
+										})
+										.catch((error) => {
+											setError(error.code);
+										});
+								}}>
+								<Text
+									className="text-xl"
+									style={{
+										fontFamily: "JosefinSans-Light",
+										color: colors.secondaryText,
+									}}>
+									Sign In
+								</Text>
+							</TouchableOpacity>
+							<View className="flex-row justify-center mt-8">
+								<Text
+									className="mr-1"
+									style={{
+										fontFamily: "JosefinSans-Regular",
+										color: colors.primaryText,
+									}}>
+									Don't have an account?
+								</Text>
+								<TouchableOpacity
+									onPress={() => {
+										router.push("/register");
+									}}>
+									<Text
+										className="text-sky-600"
+										style={{
+											fontFamily: "JosefinSans-Regular",
+										}}>
+										Register here!
+									</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
+					</View>
+				</TouchableWithoutFeedback>
+			</KeyboardAvoidingView>
+		</ImageBackground>
 	);
 };
-
-const styleCreator = (colorScheme: ColorSchemeName) =>
-	StyleSheet.create({
-		container: {
-			flex: 1,
-		},
-		innerContainer: {
-			flex: 1,
-			alignItems: "center",
-			justifyContent: "center",
-		},
-		input: {
-			width: 400,
-			borderRadius: 20,
-			padding: 20,
-			marginVertical: 10,
-			backgroundColor: "black",
-		},
-		button: {
-			width: 300,
-			alignItems: "center",
-			justifyContent: "center",
-			padding: 20,
-			borderRadius: 20,
-			marginVertical: 10,
-			backgroundColor: "blue",
-		},
-		buttonText: {
-			fontSize: 16,
-			lineHeight: 21,
-			fontWeight: "bold",
-			letterSpacing: 0.25,
-			color: "white",
-		},
-	});
 
 export default SignIn;

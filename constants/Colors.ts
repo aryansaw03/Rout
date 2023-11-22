@@ -6,11 +6,11 @@ const defaultColors = {
 export const lightColors = {
 	primary: "#a9fbc3",
 	primaryText: "#000000",
-	secondaryText: "#ffffff",
-    accent: "#999999",
-    background: "#ffffff",
-    backgroundTint: "#ffffff",
-    ...defaultColors,
+	secondaryText: "#2F2F2F",
+	accent: "#999999",
+	background: "#ffffff",
+	backgroundTint: "#ffffff",
+	...defaultColors,
 };
 
 export const darkColors = {
