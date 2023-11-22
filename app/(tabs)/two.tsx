@@ -1,11 +1,11 @@
-import { Button, StyleSheet } from 'react-native';
+import { Button, StyleSheet } from "react-native";
 
-import { Text, View } from '../../components/Themed';
+import { signOut } from "firebase/auth";
+import { View } from "react-native";
 import { auth } from "../../FirebaseConfig";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export default function TabTwoScreen() {
-  return (
+	return (
 		<View style={styles.container}>
 			<Button
 				title="Sign Out"
@@ -15,27 +15,27 @@ export default function TabTwoScreen() {
 							console.log("Sign-out successful.");
 						})
 						.catch((error) => {
-							console.log(error.message)
+							console.log(error.message);
 						});
 				}}
 			/>
 		</View>
-  );
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	title: {
+		fontSize: 20,
+		fontWeight: "bold",
+	},
+	separator: {
+		marginVertical: 30,
+		height: 1,
+		width: "80%",
+	},
 });
