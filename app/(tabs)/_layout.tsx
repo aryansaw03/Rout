@@ -1,12 +1,11 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Redirect, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
-
-import Colors from "../../constants/Colors";
+import { Redirect, Tabs } from "expo-router";
+import { useColorScheme } from "react-native";
+import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
+import getThemeColors from "../../constants/Colors";
 import { useAuth } from "../../context/auth";
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme();
+	const colors = getThemeColors(useColorScheme());
 	const user = useAuth();
 
 	if (!user) {
@@ -16,18 +15,43 @@ export default function TabLayout() {
 	return (
 		<Tabs
 			screenOptions={{
-				tabBarActiveTintColor: 'blue',
+				tabBarActiveTintColor: colors.primary,
+				tabBarInactiveTintColor: colors.accent,
+				headerShown: false,
+				tabBarLabelStyle: {
+					fontFamily: "JosefinSans-Regular",
+				},
+				tabBarStyle: {
+					backgroundColor: colors.backgroundTint,
+					borderTopWidth: 0,
+					height: 90,
+				},
 			}}>
 			<Tabs.Screen
-				name="one"
+				name="my-rentals"
 				options={{
-					title: "Tab One",
+					tabBarLabel: "My Rentals",
+					tabBarIcon: ({ size, color }) => (
+						<Entypo name="shopping-bag" size={size} color={color} />
+					),
 				}}
 			/>
 			<Tabs.Screen
-				name="two"
+				name="dashboard"
 				options={{
-					title: "Tab Two",
+					tabBarLabel: "Search",
+					tabBarIcon: ({ size, color }) => (
+						<Ionicons name="search" size={size} color={color} />
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="profile"
+				options={{
+					tabBarLabel: "Profile",
+					tabBarIcon: ({ size, color }) => (
+						<FontAwesome name="user" size={size} color={color} />
+					),
 				}}
 			/>
 		</Tabs>
