@@ -28,7 +28,7 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 		const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
 			if (user) {
 				setUser(user);
-				router.replace("/one");
+				router.replace("/dashboard");
 			} else {
 				setUser(null);
 				router.replace("/sign-in");

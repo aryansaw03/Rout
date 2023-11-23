@@ -7,6 +7,7 @@ import {
 	KeyboardAvoidingView,
 	Platform,
 	Text,
+	TextInput,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 	View,
@@ -24,37 +25,37 @@ const SignIn = () => {
 	const router = useRouter();
 	return (
 		<ImageBackground
-			className="w-full h-full"
+			className="flex-1"
 			style={{ backgroundColor: colors.background }}
 			resizeMode="cover"
 			source={require("../../assets/images/auth-background.png")}>
-			<KeyboardAvoidingView
-				className="w-full h-full"
-				behavior={Platform.OS === "ios" ? "padding" : "height"}>
-				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-					<View className="flex-1 items-center">
-						<View className="pt-40 h-72 justify-end">
-							<Text
-								className="text-5xl"
-								style={{
-									color: colors.secondaryText,
-									fontFamily: "JosefinSans-Light",
-								}}>
-								Hello,
-							</Text>
-							<Text
-								className="text-2xl mt-10"
-								style={{
-									color: colors.secondaryText,
-									fontFamily: "JosefinSans-Bold",
-								}}>
-								Sign into your Account
-							</Text>
-						</View>
-						<View className="flex-1 max-h-96 w-9/12 items-center justify-end">
-							{error && (
-								<Text style={{ color: "red" }}>{error}</Text>
-							)}
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+				<View className="flex-1 items-center">
+					<View className="h-2/5 pb-20 justify-end">
+						<Text
+							className="text-5xl"
+							style={{
+								color: colors.secondaryText,
+								fontFamily: "JosefinSans-Light",
+							}}>
+							Hello,
+						</Text>
+						<Text
+							className="text-2xl mt-10"
+							style={{
+								color: colors.secondaryText,
+								fontFamily: "JosefinSans-Bold",
+							}}>
+							Sign into your Account
+						</Text>
+					</View>
+					<KeyboardAvoidingView
+						className="flex-1 w-full items-center"
+						behavior={Platform.OS === "ios" ? "padding" : "height"}
+						keyboardVerticalOffset={-50}>
+						<View
+							className="flex-1 w-3/4 items-center justify-evenly"
+							style={{ maxHeight: 400 }}>
 							<AuthTextInput
 								placeholder="Email"
 								value={email}
@@ -70,7 +71,7 @@ const SignIn = () => {
 								secureTextEntry={true}
 							/>
 							<TouchableOpacity
-								className="rounded-2xl w-48 h-12 items-center justify-center mt-4"
+								className="rounded-2xl w-48 h-12 items-center justify-center"
 								style={{ backgroundColor: colors.primary }}
 								onPress={() => {
 									signInWithEmailAndPassword(
@@ -94,7 +95,7 @@ const SignIn = () => {
 									Sign In
 								</Text>
 							</TouchableOpacity>
-							<View className="flex-row justify-center mt-8">
+							<View className="flex-row justify-center">
 								<Text
 									className="mr-1"
 									style={{
@@ -117,9 +118,9 @@ const SignIn = () => {
 								</TouchableOpacity>
 							</View>
 						</View>
-					</View>
-				</TouchableWithoutFeedback>
-			</KeyboardAvoidingView>
+					</KeyboardAvoidingView>
+				</View>
+			</TouchableWithoutFeedback>
 		</ImageBackground>
 	);
 };
