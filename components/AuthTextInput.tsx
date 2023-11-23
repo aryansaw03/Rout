@@ -50,7 +50,7 @@ const AuthTextInput = ({
 	const colors = getThemeColors(useColorScheme());
 	return (
 		<TextInput
-			className="border-b-2 text-lg text-center w-full h-14 mb-4"
+			className="border-b-2 text-lg text-center w-full h-14"
 			placeholder={placeholder}
 			placeholderTextColor={colors.accent}
 			value={value}
