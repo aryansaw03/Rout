@@ -1,18 +1,21 @@
+import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
+	Text,
+	TouchableOpacity,
 	TouchableWithoutFeedback,
 	View,
 	useColorScheme,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import Header from "../../components/Header";
 import ItemCategoryList from "../../components/ItemCategoryList";
-import LocationSelectorHeader from "../../components/LocationSelectorHeader";
 import SearchBar from "../../components/SearchBar";
 import getThemeColors from "../../constants/Colors";
-import { Item } from "../../utils/types";
+import { Item } from "../../utils/Types";
 
 const sample: Item = {
 	photoURL: "https://picsum.photos/200/300?random=1",
@@ -49,7 +52,30 @@ const Dashboard = () => {
 					setInSearch(false);
 				}}>
 				<View className="flex-1 items-center w-full">
-					<LocationSelectorHeader city={city} state={state} />
+					<Header>
+						<Text
+							style={{
+								color: colors.primary,
+								fontFamily: "JosefinSans-Regular",
+							}}>
+							Searching in...
+						</Text>
+						<TouchableOpacity className="flex-row items-center mt-2">
+							<Text
+								className="text-2xl mr-3"
+								style={{
+									color: colors.primaryText,
+									fontFamily: "JosefinSans-Medium",
+								}}>
+								{city}, {state}
+							</Text>
+							<FontAwesome
+								name="chevron-down"
+								size={18}
+								color={colors.primaryText}
+							/>
+						</TouchableOpacity>
+					</Header>
 					<SearchBar
 						search={search}
 						updateSearch={updateSearch}
