@@ -1,16 +1,12 @@
-import {
-	View,
-	Text,
-	FlatList,
-	TouchableWithoutFeedback,
-	useColorScheme,
-	TouchableOpacity,
-	Image,
-} from "react-native";
 import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+	FlatList,
+	Text,
+	View,
+	useColorScheme
+} from "react-native";
 import getThemeColors from "../constants/Colors";
-import { Item } from "../utils/types";
+import { Item } from "../utils/Types";
 import ItemCard from "./ItemCard";
 
 const ItemCategoryList = ({

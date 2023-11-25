@@ -1,6 +1,6 @@
-import { View, Text, TextInput, useColorScheme } from "react-native";
-import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { TextInput, View, useColorScheme } from "react-native";
 import getThemeColors from "../constants/Colors";
 
 const SearchBar = ({
@@ -17,7 +17,11 @@ const SearchBar = ({
 		<View className="items-center w-full py-5">
 			<View
 				className="flex-row w-11/12 rounded-full items-center py-2"
-				style={{ backgroundColor: colors.backgroundTint, borderColor: colors.secondaryText, borderWidth: 1 }}>
+				style={{
+					backgroundColor: colors.backgroundTint,
+					borderColor: colors.secondaryText,
+					borderWidth: 1,
+				}}>
 				<Ionicons
 					name="search"
 					size={36}

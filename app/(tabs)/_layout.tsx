@@ -1,6 +1,6 @@
+import { Entypo, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Redirect, Tabs } from "expo-router";
 import { useColorScheme } from "react-native";
-import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
 import getThemeColors from "../../constants/Colors";
 import { useAuth } from "../../context/auth";
 

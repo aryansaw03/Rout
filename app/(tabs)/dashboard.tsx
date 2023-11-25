@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import {
 	Keyboard,
+	KeyboardAvoidingView,
+	Platform,
 	TouchableWithoutFeedback,
 	View,
 	useColorScheme,
-	KeyboardAvoidingView,
-	Platform,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import ItemCategoryList from "../../components/ItemCategoryList";
 import LocationSelectorHeader from "../../components/LocationSelectorHeader";
 import SearchBar from "../../components/SearchBar";
 import getThemeColors from "../../constants/Colors";
-import ItemCategoryList from "../../components/ItemCategoryList";
-import { ScrollView } from "react-native-gesture-handler";
 import { Item } from "../../utils/types";
 
 const sample: Item = {
@@ -43,10 +43,18 @@ const Dashboard = () => {
 		<View
 			className="flex-1 items-center"
 			style={{ backgroundColor: colors.background }}>
-			<TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); setInSearch(false) }}>
+			<TouchableWithoutFeedback
+				onPress={() => {
+					Keyboard.dismiss();
+					setInSearch(false);
+				}}>
 				<View className="flex-1 items-center w-full">
 					<LocationSelectorHeader city={city} state={state} />
-					<SearchBar search={search} updateSearch={updateSearch} setInSearch={setInSearch}/>
+					<SearchBar
+						search={search}
+						updateSearch={updateSearch}
+						setInSearch={setInSearch}
+					/>
 					{!inSearch ? (
 						<View className="flex-1">
 							<ScrollView>

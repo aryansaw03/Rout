@@ -1,13 +1,22 @@
-import { View, Text, TouchableOpacity, Image, useColorScheme, StyleSheet } from "react-native";
 import React from "react";
-import { Item } from "../utils/types";
+import {
+	Image,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+	useColorScheme,
+} from "react-native";
 import getThemeColors from "../constants/Colors";
+import { Item } from "../utils/Types";
 
 const ItemCard = ({ item }: { item: Item }) => {
 	const colors = getThemeColors(useColorScheme());
 	return (
 		<TouchableOpacity>
-			<View className="bg-white w-52 rounded-2xl items-center" style={styles.bottomShadow}>
+			<View
+				className="bg-white w-52 rounded-2xl items-center"
+				style={styles.bottomShadow}>
 				<Image
 					className="w-full h-36 rounded-t-2xl"
 					source={{

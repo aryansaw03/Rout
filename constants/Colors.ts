@@ -1,7 +1,7 @@
 const defaultColors = {
-    white: "#ffffff",
-    black: "#000000",
-}
+	white: "#ffffff",
+	black: "#000000",
+};
 
 export const lightColors = {
 	primary: "#a9fbc3",
@@ -17,12 +17,14 @@ export const darkColors = {
 	primary: "#a9fbc3",
 	primaryText: "#ffffff",
 	secondaryText: "#1E1E1E",
-    accent: "#ffffff",
-    background: "#2F2F2F",
-    backgroundTint: "#1E1E1E",
-    ...defaultColors,
+	accent: "#ffffff",
+	background: "#2F2F2F",
+	backgroundTint: "#1E1E1E",
+	...defaultColors,
 };
 
-export default function getThemeColors(theme: "light" | "dark" | undefined | null) {
+export default function getThemeColors(
+	theme: "light" | "dark" | undefined | null
+) {
 	return theme === "light" ? lightColors : darkColors;
 }
