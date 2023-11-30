@@ -16,7 +16,7 @@ const Profile = () => {
 						color: colors.primaryText,
 						fontFamily: "JosefinSans-Medium",
 					}}>
-					My Rentals
+					Profile
 				</Text>
 			</Header>
 			<View className="flex-1 items-center justify-center">
