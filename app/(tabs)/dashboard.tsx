@@ -18,7 +18,7 @@ import getThemeColors from "../../constants/Colors";
 import { Item } from "../../utils/Types";
 
 const sample: Item = {
-	photoURL: "https://picsum.photos/200/300?random=1",
+	photoURL: "",
 	name: "Burgers",
 	owner: "John Doe",
 	cost: 10,
@@ -29,6 +29,7 @@ const sampleList: Item[] = Array(8)
 	.fill(null)
 	.map((_, index) => ({
 		...sample,
+		photoURL: `https://picsum.photos/300/200?random=${index}`,
 		id: index + 5,
 	}));
 
