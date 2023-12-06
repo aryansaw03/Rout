@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, useColorScheme } from "react-native";
 import React from "react";
-import getThemeColors from "../constants/Colors";
+import getThemeColors from "@constants/Colors";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
 	const colors = getThemeColors(useColorScheme());

@@ -1,9 +1,9 @@
-import { View, Text, useColorScheme, FlatList } from "react-native";
 import React from "react";
-import Header from "../../components/Header";
-import getThemeColors from "../../constants/Colors";
-import { Item } from "../../utils/Types";
-import ItemStatus from "../../components/ItemStatus";
+import { FlatList, Text, View, useColorScheme } from "react-native";
+import Header from "@components/Common/Header";
+import ItemStatus from "@components/MyRentals/ItemStatus";
+import getThemeColors from "@constants/Colors";
+import { Item } from "@utils/Types";
 
 const sample: Item = {
 	photoURL: "",
@@ -54,7 +54,10 @@ const MyRentals = () => {
 					style={{ width: "100%" }}
 					data={sampleStatusItemList}
 					renderItem={({ item }) => (
-						<ItemStatus item={item.item} itemStatus={item.itemStatus} />
+						<ItemStatus
+							item={item.item}
+							itemStatus={item.itemStatus}
+						/>
 					)}
 					keyExtractor={(item) => item.item.id.toString()}
 					contentContainerStyle={{

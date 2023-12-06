@@ -13,9 +13,9 @@ import {
 	View,
 	useColorScheme,
 } from "react-native";
-import { auth } from "../../FirebaseConfig";
-import AuthTextInput from "../../components/AuthTextInput";
-import getThemeColors from "../../constants/Colors";
+import { auth } from "@FirebaseConfig";
+import AuthTextInput from "@components/Auth/AuthTextInput";
+import getThemeColors from "@constants/Colors";
 
 const SignIn = () => {
 	const [email, setEmail] = useState("");
@@ -28,7 +28,7 @@ const SignIn = () => {
 			className="flex-1"
 			style={{ backgroundColor: colors.background }}
 			resizeMode="cover"
-			source={require("../../assets/images/auth-background.png")}>
+			source={require("@assets/images/auth-background.png")}>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View className="flex-1 items-center">
 					<View className="h-2/5 pb-20 justify-end">

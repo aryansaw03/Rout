@@ -1,8 +1,8 @@
 import { Entypo, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Redirect, Tabs } from "expo-router";
 import { useColorScheme } from "react-native";
-import getThemeColors from "../../constants/Colors";
-import { useAuth } from "../../context/auth";
+import getThemeColors from "@constants/Colors";
+import { useAuth } from "@context/auth";
 
 export default function TabLayout() {
 	const colors = getThemeColors(useColorScheme());
@@ -37,7 +37,7 @@ export default function TabLayout() {
 				}}
 			/>
 			<Tabs.Screen
-				name="dashboard"
+				name="(dashboard)"
 				options={{
 					tabBarLabel: "Search",
 					tabBarIcon: ({ size, color }) => (

@@ -1,9 +1,9 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { Button, Text, View, useColorScheme } from "react-native";
-import { auth } from "../../FirebaseConfig";
-import Header from "../../components/Header";
-import getThemeColors from "../../constants/Colors";
+import { auth } from "@FirebaseConfig";
+import Header from "@components/Common/Header";
+import getThemeColors from "@constants/Colors";
 
 const Profile = () => {
 	const colors = getThemeColors(useColorScheme());

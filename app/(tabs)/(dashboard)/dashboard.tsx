@@ -1,4 +1,10 @@
+import Header from "@components/Common/Header";
+import ItemCategoryList from "@components/Dashboard/ItemCategoryList";
+import SearchBar from "@components/Dashboard/SearchBar";
+import getThemeColors from "@constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
+import { Item } from "@utils/Types";
+import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
 	Keyboard,
@@ -11,11 +17,6 @@ import {
 	useColorScheme,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Header from "../../components/Header";
-import ItemCategoryList from "../../components/ItemCategoryList";
-import SearchBar from "../../components/SearchBar";
-import getThemeColors from "../../constants/Colors";
-import { Item } from "../../utils/Types";
 
 const sample: Item = {
 	photoURL: "",
@@ -61,21 +62,23 @@ const Dashboard = () => {
 							}}>
 							Searching in...
 						</Text>
-						<TouchableOpacity className="flex-row items-center mt-2">
-							<Text
-								className="text-2xl mr-3"
-								style={{
-									color: colors.primaryText,
-									fontFamily: "JosefinSans-Medium",
-								}}>
-								{city}, {state}
-							</Text>
-							<FontAwesome
-								name="chevron-down"
-								size={18}
-								color={colors.primaryText}
-							/>
-						</TouchableOpacity>
+						<Link href="/market-selector" asChild>
+							<TouchableOpacity className="flex-row items-center mt-2">
+								<Text
+									className="text-2xl mr-3"
+									style={{
+										color: colors.primaryText,
+										fontFamily: "JosefinSans-Medium",
+									}}>
+									{city}, {state}
+								</Text>
+								<FontAwesome
+									name="chevron-down"
+									size={18}
+									color={colors.primaryText}
+								/>
+							</TouchableOpacity>
+						</Link>
 					</Header>
 					<SearchBar
 						search={search}

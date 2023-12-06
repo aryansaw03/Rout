@@ -6,8 +6,8 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import React from "react";
-import getThemeColors from "../constants/Colors";
-import { Item } from "../utils/Types";
+import getThemeColors from "@constants/Colors";
+import { Item } from "@utils/Types";
 const ItemStatus = ({
 	item,
 	itemStatus,

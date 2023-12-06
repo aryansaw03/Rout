@@ -1,6 +1,6 @@
 import React from "react";
 import { KeyboardTypeOptions, TextInput, useColorScheme } from "react-native";
-import getThemeColors from "../constants/Colors";
+import getThemeColors from "@constants/Colors";
 
 type TextContentType =
 	| "none"
