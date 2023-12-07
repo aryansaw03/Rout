@@ -11,7 +11,7 @@ import getThemeColors from "@constants/Colors";
 import { Item } from "@utils/Types";
 
 const ItemCard = ({ item }: { item: Item }) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<TouchableOpacity>
 			<View

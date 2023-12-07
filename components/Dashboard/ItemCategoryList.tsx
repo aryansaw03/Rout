@@ -11,7 +11,7 @@ const ItemCategoryList = ({
 	title: string;
 	itemList: Item[];
 }) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<View className="justify-center py-2">
 			<Text

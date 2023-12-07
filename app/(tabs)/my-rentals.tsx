@@ -34,7 +34,7 @@ const sampleStatusItemList: StatusItem[] = sampleList.map((item) => ({
 }));
 
 const MyRentals = () => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<View
 			className="flex-1 items-center"

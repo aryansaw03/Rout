@@ -4,30 +4,30 @@ import { StyleSheet, Text, View, useColorScheme } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const MarketTypeSelector = ({
-	selectedMarket,
-	setSelectedMarket,
-	menuItems,
+	selectedMarketType,
+	setSelectedMarketType,
+	marketTypes,
 }: {
-	selectedMarket: string;
-	setSelectedMarket: (item: string) => void;
-	menuItems: string[];
+	selectedMarketType: string;
+	setSelectedMarketType: (item: string) => void;
+	marketTypes: string[];
 }) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	const styles = stylesGenerator();
 
 	return (
 		<View
-			className="w-full h-16 items-center justify-center"
+			className="w-full py-5 items-center justify-center"
 			style={{ backgroundColor: colors.background }}>
 			<View className="flex-row">
-				{menuItems.map((item, index) => {
+				{marketTypes.map((item, index) => {
 					return (
 						<TouchableOpacity
 							key={index}
-							className={`w-48 h-10 items-center justify-center ${
+							className={`w-48 h-10 items-center justify-center border ${
 								index === 0
 									? "rounded-l-lg"
-									: index === menuItems.length - 1
+									: index === marketTypes.length - 1
 									  ? "rounded-r-lg"
 									  : ""
 							}`}
@@ -35,24 +35,24 @@ const MarketTypeSelector = ({
 								styles.selectorItem,
 								{
 									backgroundColor:
-										selectedMarket === item
+										selectedMarketType === item
 											? colors.primary
 											: colors.backgroundTint,
 								},
 							]}
 							onPress={() => {
-								setSelectedMarket(item);
+								setSelectedMarketType(item);
 							}}>
 							<Text
 								className="text-xl"
 								style={{
 									fontFamily: "JosefinSans-Light",
 									color:
-										selectedMarket === item
+										selectedMarketType === item
 											? colors.secondaryText
 											: colors.primaryText,
 								}}>
-								{item}
+								{item.charAt(0).toUpperCase() + item.slice(1)}
 							</Text>
 						</TouchableOpacity>
 					);
@@ -63,12 +63,11 @@ const MarketTypeSelector = ({
 };
 
 const stylesGenerator = () => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return StyleSheet.create({
 		selectorItem: {
 			backgroundColor: colors.backgroundTint,
 			borderColor: colors.accent,
-			borderWidth: 1,
 		},
 	});
 };

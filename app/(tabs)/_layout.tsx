@@ -5,7 +5,7 @@ import getThemeColors from "@constants/Colors";
 import { useAuth } from "@context/auth";
 
 export default function TabLayout() {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	const user = useAuth();
 
 	if (!user) {

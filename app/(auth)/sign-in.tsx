@@ -21,7 +21,7 @@ const SignIn = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	const router = useRouter();
 	return (
 		<ImageBackground

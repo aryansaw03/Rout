@@ -12,15 +12,14 @@ const SearchBar = ({
 	updateSearch: (search: string) => void;
 	setInSearch: (inSearch: boolean) => void;
 }) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<View className="items-center w-full py-5">
 			<View
-				className="flex-row w-11/12 rounded-full items-center py-2"
+				className="flex-row w-11/12 rounded-full items-center py-2 border"
 				style={{
 					backgroundColor: colors.backgroundTint,
 					borderColor: colors.secondaryText,
-					borderWidth: 1,
 				}}>
 				<Ionicons
 					name="search"

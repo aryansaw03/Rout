@@ -2,6 +2,7 @@ import Header from "@components/Common/Header";
 import ItemCategoryList from "@components/Dashboard/ItemCategoryList";
 import SearchBar from "@components/Dashboard/SearchBar";
 import getThemeColors from "@constants/Colors";
+import { useMarket } from "@context/market";
 import { FontAwesome } from "@expo/vector-icons";
 import { Item } from "@utils/Types";
 import { Link } from "expo-router";
@@ -35,11 +36,12 @@ const sampleList: Item[] = Array(8)
 	}));
 
 const Dashboard = () => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	const [city, setCity] = useState("Ashburn");
 	const [state, setState] = useState("VA");
 	const [search, setSearch] = useState("");
 	const [inSearch, setInSearch] = useState(false);
+	const { market } = useMarket();
 
 	const updateSearch = (search: string) => {
 		setSearch(search);
@@ -70,7 +72,9 @@ const Dashboard = () => {
 										color: colors.primaryText,
 										fontFamily: "JosefinSans-Medium",
 									}}>
-									{city}, {state}
+									{market?.type === "group"
+										? market?.name
+										: market?.city + ", " + market?.state}
 								</Text>
 								<FontAwesome
 									name="chevron-down"

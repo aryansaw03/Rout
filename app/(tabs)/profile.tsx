@@ -6,7 +6,7 @@ import Header from "@components/Common/Header";
 import getThemeColors from "@constants/Colors";
 
 const Profile = () => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<View className="flex-1 items-center">
 			<Header>

@@ -47,7 +47,7 @@ const AuthTextInput = ({
 	textContentType,
 	secureTextEntry = false,
 }: Props) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<TextInput
 			className="border-b-2 text-lg text-center w-full h-14"
