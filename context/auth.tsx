@@ -1,8 +1,8 @@
 import { router, useRootNavigationState, useSegments } from "expo-router";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { User, onAuthStateChanged } from "@firebase/auth";
 import * as React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../FirebaseConfig";
+import { auth } from "@FirebaseConfig";
 
 // create context
 const AuthContext = createContext<User | undefined | null>(undefined);
@@ -17,7 +17,6 @@ export function useAuth(): User | null {
 
 	return context;
 }
-
 
 export function AuthProvider({ children }: React.PropsWithChildren) {
 	const [user, setUser] = useState<User | null>(null);

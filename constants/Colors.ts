@@ -1,3 +1,4 @@
+import { useColorScheme } from "react-native";
 const defaultColors = {
 	white: "#ffffff",
 	black: "#000000",
@@ -23,8 +24,6 @@ export const darkColors = {
 	...defaultColors,
 };
 
-export default function getThemeColors(
-	theme: "light" | "dark" | undefined | null
-) {
-	return theme === "light" ? lightColors : darkColors;
+export default function getThemeColors() {
+	return useColorScheme() === "light" ? lightColors : darkColors;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { KeyboardTypeOptions, TextInput, useColorScheme } from "react-native";
-import getThemeColors from "../constants/Colors";
+import getThemeColors from "@constants/Colors";
 
 type TextContentType =
 	| "none"
@@ -47,7 +47,7 @@ const AuthTextInput = ({
 	textContentType,
 	secureTextEntry = false,
 }: Props) => {
-	const colors = getThemeColors(useColorScheme());
+	const colors = getThemeColors();
 	return (
 		<TextInput
 			className="border-b-2 text-lg text-center w-full h-14"
