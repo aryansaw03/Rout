@@ -4,7 +4,7 @@ export type Item = {
 	owner: string;
 	cost: number;
 	costTime: "month" | "day" | "hour" | "minute";
-	id: number;
+	id: string;
 };
 
 export type LocationMarket = {
@@ -18,7 +18,9 @@ export type LocationMarket = {
 export type GroupMarket = {
 	type: "group";
 	name: string;
-	groupID: number;
+	groupID: string;
+	inviteCode?: string;
 };
 
 export type Market = LocationMarket | GroupMarket;
+

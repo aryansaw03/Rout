@@ -26,7 +26,7 @@ const ItemCategoryList = ({
 				horizontal
 				data={itemList}
 				renderItem={({ item }) => <ItemCard item={item} />}
-				keyExtractor={(item) => item.id.toString()}
+				keyExtractor={(item) => item.id}
 				contentContainerStyle={{
 					gap: 20,
 					paddingVertical: 10,

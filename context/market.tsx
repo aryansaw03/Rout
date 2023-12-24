@@ -2,8 +2,8 @@ import React, { useState, useContext, createContext } from "react";
 import { Market } from "@utils/Types";
 
 type MarketContextType = {
-	market: Market | undefined;
-	setMarket: React.Dispatch<React.SetStateAction<Market | undefined>>;
+	market: Market;
+	setMarket: React.Dispatch<React.SetStateAction<Market>>;
 };
 
 const MarketContext = createContext<MarketContextType | undefined>(undefined);
@@ -13,7 +13,7 @@ type MarketProviderProps = {
 };
 
 export const MarketProvider: React.FC<MarketProviderProps> = ({ children }) => {
-	const [market, setMarket] = useState<Market | undefined>({
+	const [market, setMarket] = useState<Market>({
 		type: "location",
 		city: "Ashburn",
 		state: "VA",

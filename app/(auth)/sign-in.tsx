@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import {
+	Alert,
 	ImageBackground,
 	Keyboard,
 	KeyboardAvoidingView,
@@ -20,9 +21,21 @@ import getThemeColors from "@constants/Colors";
 const SignIn = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
+	const [error, setError] = useState<string | null>(null);
 	const colors = getThemeColors();
 	const router = useRouter();
+
+	if (error) {
+		Alert.alert("Invalid Credentials", "Please try again", [
+			{
+				text: "OK",
+				onPress: () => {
+					setError(null);
+				},
+			},
+		]);
+	}
+
 	return (
 		<ImageBackground
 			className="flex-1"
