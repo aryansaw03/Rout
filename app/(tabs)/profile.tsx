@@ -1,38 +1,36 @@
+import { auth } from "@FirebaseConfig";
+import getThemeColors from "@constants/Colors";
 import { signOut } from "firebase/auth";
 import React from "react";
-import { Button, Text, View, useColorScheme } from "react-native";
-import { auth } from "@FirebaseConfig";
-import Header from "@components/Common/Header";
-import getThemeColors from "@constants/Colors";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const Profile = () => {
 	const colors = getThemeColors();
 	return (
-		<View className="flex-1 items-center">
-			<Header>
+		<View
+			className="flex-1 w-full items-center justify-center"
+			style={{ backgroundColor: colors.background }}>
+			<TouchableOpacity
+				className="py-5 px-10 rounded-3xl"
+				style={{ backgroundColor: colors.backgroundTint }}
+				onPress={() => {
+					signOut(auth)
+						.then(() => {
+							console.log("Sign-out successful.");
+						})
+						.catch((error) => {
+							console.log(error.message);
+						});
+				}}>
 				<Text
-					className="text-2xl mr-3"
+					className="text-xl"
 					style={{
-						color: colors.primaryText,
 						fontFamily: "JosefinSans-Medium",
+						color: colors.primaryText,
 					}}>
-					Profile
+					Sign out
 				</Text>
-			</Header>
-			<View className="flex-1 items-center justify-center">
-				<Button
-					title="Sign Out"
-					onPress={() => {
-						signOut(auth)
-							.then(() => {
-								console.log("Sign-out successful.");
-							})
-							.catch((error) => {
-								console.log(error.message);
-							});
-					}}
-				/>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 };

@@ -1,26 +1,14 @@
+import MarketSelector from "@components/Common/MarketSelector";
 import getThemeColors from "@constants/Colors";
-import { useMarket } from "@context/market";
-import { GroupMarket, LocationMarket } from "@utils/Types";
-import { useRouter } from "expo-router";
+import { useGroups } from "@context/groups";
+import { useMarket } from "context/market";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const GroupSelector = () => {
 	const colors = getThemeColors();
-	const { setMarket } = useMarket();
-	const router = useRouter();
-	const availableGroups: GroupMarket[] = [
-		{
-			type: "group",
-			name: "Official UVA Resale Marketplace",
-			groupID: 123,
-		},
-		{
-			type: "group",
-			name: "UVA Fraternities and Sororities",
-			groupID: 124,
-		},
-	];
+	const { ownedGroups, joinedGroups, loaded } = useGroups();
+	const allGroups = [...ownedGroups, ...joinedGroups];
 	return (
 		<View
 			className="flex-1 w-full items-center"
@@ -33,27 +21,34 @@ const GroupSelector = () => {
 				}}>
 				Your Groups
 			</Text>
-			{availableGroups.map((group, index) => {
-				return (
-					<TouchableOpacity
-						key={index}
-						className="w-3/4 py-4 items-center border rounded-2xl my-2"
-						style={{ borderColor: colors.accent }}
-						onPress={() => {
-							setMarket(group);
-							router.back();
-						}}>
-						<Text
-							className="text-lg"
-							style={{
-								color: colors.primaryText,
-								fontFamily: "JosefinSans-Regular",
-							}}>
-							{group.name}
-						</Text>
-					</TouchableOpacity>
-				);
-			})}
+			{!loaded ? (
+				<View className="flex-1 items-center">
+					<ActivityIndicator />
+				</View>
+			) : (
+				<FlatList
+					style={{ width: "100%" }}
+					data={allGroups}
+					renderItem={({ item }) => (
+						<MarketSelector item={item}>
+							<Text
+								className="text-xl"
+								style={{
+									fontFamily: "JosefinSans-Regular",
+									color: colors.primaryText,
+								}}>
+								{item.name}
+							</Text>
+						</MarketSelector>
+					)}
+					keyExtractor={(item) => item.groupID}
+					contentContainerStyle={{
+						gap: 15,
+						paddingVertical: 15,
+						alignItems: "center",
+					}}
+				/>
+			)}
 		</View>
 	);
 };

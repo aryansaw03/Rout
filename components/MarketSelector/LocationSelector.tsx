@@ -1,9 +1,10 @@
 import getThemeColors from "@constants/Colors";
-import { useMarket } from "@context/market";
+import { useMarket } from "context/market";
 import { LocationMarket } from "@utils/Types";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import MarketSelector from "@components/Common/MarketSelector";
 
 const LocationSelector = () => {
 	const colors = getThemeColors();
@@ -43,27 +44,28 @@ const LocationSelector = () => {
 				}}>
 				Available locations...
 			</Text>
-			{availableLocations.map((loc, index) => {
-				return (
-					<TouchableOpacity
-						key={index}
-						className="w-3/4 py-4 items-center border rounded-2xl my-2"
-						style={{ borderColor: colors.accent }}
-						onPress={() => {
-							setMarket(loc);
-							router.back();
-						}}>
+			<FlatList
+				style={{ width: "100%" }}
+				data={availableLocations}
+				renderItem={({ item }) => (
+					<MarketSelector item={item}>
 						<Text
-							className="text-lg"
+							className="text-xl"
 							style={{
-								color: colors.primaryText,
 								fontFamily: "JosefinSans-Regular",
+								color: colors.primaryText,
 							}}>
-							{loc.city}, {loc.state}
+							{item.city}, {item.state}
 						</Text>
-					</TouchableOpacity>
-				);
-			})}
+					</MarketSelector>
+				)}
+				keyExtractor={(_, index) => index.toString()}
+				contentContainerStyle={{
+					gap: 15,
+					paddingVertical: 15,
+					alignItems: "center",
+				}}
+			/>
 		</View>
 	);
 };

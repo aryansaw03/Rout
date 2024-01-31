@@ -1,13 +1,7 @@
-import {
-	View,
-	Text,
-	useColorScheme,
-	Image,
-	TouchableOpacity,
-} from "react-native";
-import React from "react";
 import getThemeColors from "@constants/Colors";
 import { Item } from "@utils/Types";
+import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 const ItemStatus = ({
 	item,
 	itemStatus,

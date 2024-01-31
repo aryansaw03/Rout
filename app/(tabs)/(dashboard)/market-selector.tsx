@@ -1,13 +1,15 @@
 import GroupSelector from "@components/MarketSelector/GroupSelector";
 import LocationSelector from "@components/MarketSelector/LocationSelector";
 import MarketTypeSelector from "@components/MarketSelector/MarketTypeSelector";
-import { useMarket } from "@context/market";
+import { useMarket } from "context/market";
 import React from "react";
 import { View, Text } from "react-native";
 
 const MarketSelector = () => {
 	const { market } = useMarket();
-	const [selectedMarketType, setSelectedMarketType] = React.useState<string>(market!.type);
+	const [selectedMarketType, setSelectedMarketType] = React.useState<string>(
+		market!.type
+	);
 	const marketTypes = ["location", "group"];
 	const renderSelectedMarket = () => {
 		switch (selectedMarketType) {

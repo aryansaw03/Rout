@@ -1,7 +1,9 @@
+import { GroupsProvider, useGroups } from "@context/groups";
+import { AuthProvider, useAuth } from "@context/auth";
+import { MarketProvider, useMarket } from "@context/market";
 import { useFonts } from "expo-font";
-import { Slot, SplashScreen } from "expo-router";
+import { Slot, SplashScreen, useRouter } from "expo-router";
 import { useEffect } from "react";
-import { AuthProvider } from "@context/auth";
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -10,42 +12,46 @@ export {
 
 export const unstable_settings = {
 	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: "/loading",
+	initialRouteName: "/sign-in",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-	const [loaded, error] = useFonts({
+	return (
+		<AuthProvider>
+			<MarketProvider>
+				<GroupsProvider>
+					<Slot />
+					<RootLayoutInner />
+				</GroupsProvider>
+			</MarketProvider>
+		</AuthProvider>
+	);
+}
+
+function RootLayoutInner() {
+	const [fontsLoaded, error] = useFonts({
 		"JosefinSans-Regular": require("@assets/fonts/JosefinSans-Regular.ttf"),
 		"JosefinSans-Light": require("@assets/fonts/JosefinSans-Light.ttf"),
 		"JosefinSans-Medium": require("@assets/fonts/JosefinSans-Medium.ttf"),
 		"JosefinSans-Bold": require("@assets/fonts/JosefinSans-Bold.ttf"),
 	});
+	const { loaded: authLoaded } = useAuth();
 
-	// Expo Router uses Error Boundaries to catch errors in the navigation tree.
 	useEffect(() => {
 		if (error) throw error;
 	}, [error]);
 
 	useEffect(() => {
-		if (loaded) {
+		if (fontsLoaded && authLoaded) {
 			SplashScreen.hideAsync();
 		}
-	}, [loaded]);
+	}, [fontsLoaded, authLoaded]);
 
-	if (!loaded) {
+	if (!fontsLoaded || !authLoaded) {
 		return null;
 	}
-
-	return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-	return (
-		<AuthProvider>
-			<Slot />
-		</AuthProvider>
-	);
+	return null;
 }
